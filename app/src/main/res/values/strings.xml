@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Consulta Fácil</string>
+
+    <string name="desc_consulta_facil_lockup">Logo Consulta Fácil</string>
+    <string name="desc_consulta_facil">O aplicativo para agendar consultas</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Senha</string>
+
+    <string name="sign_in">Entrar</string>
+    <string name="create_account">Criar Conta</string>
+    <string name="sign_out">Sair</string>
+    <string name="signed_out">Saiu</string>
+
+    <string name="emailpassword_status_fmt">Email do Usuário: %s</string>
+    <string name="firebase_status_fmt">Usuário do Firebase: %s</string>
+    <string name="authentication_failed">Autenticação Falhou!</string>
+    <string name="error_field_required">Campo Obrigatório</string>
+
+    <string name="loading">Carregando…</string>
+</resources>

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "512677295634",
+    "firebase_url": "https://project-44117074059359128.firebaseio.com",
+    "project_id": "project-44117074059359128",
+    "storage_bucket": "project-44117074059359128.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512677295634:android:e97b2238478d87f7",
+        "android_client_info": {
+          "package_name": "br.com.consultafacil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512677295634-dlt5hsf7a7lifq3vqcuom7sb8bsqqnp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwymUwzahnwRDilz1TX1ltslcNDCD-96Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
