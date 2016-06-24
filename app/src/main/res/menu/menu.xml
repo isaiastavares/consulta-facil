@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/ic_action_user"
+        android:title="@string/perfil"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/salvar"
+        android:icon="@drawable/ic_menu_share"
+        android:title="@string/salvar"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/editar"
+        android:title="@string/edit"
+        android:visible="false"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/alterar_senha"
+        android:title="@string/edit_password"
+        android:visible="false"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/sair"
+        android:title="@string/sign_out"
+        android:visible="false"
+        app:showAsAction="never"/>
+
+</menu>

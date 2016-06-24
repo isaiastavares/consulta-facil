@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Tema Base da Aplicacao -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -26,13 +26,17 @@
     <style name="TextDetailGrey" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fadeScrollbars">true</item>
         <item name="android:gravity">center</item>
-        <item name="android:maxLines">5</item>
-        <item name="android:padding">4dp</item>
-        <item name="android:scrollbars">vertical</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/grey_600</item>
+    </style>
+
+    <style name="TextDetailBlack" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="ButtonBlueDark" parent="ThemeOverlay.AppCompat.Dark">

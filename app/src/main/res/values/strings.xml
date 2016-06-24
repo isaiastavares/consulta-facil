@@ -1,6 +1,22 @@
 <resources>
     <string name="app_name">Consulta Fácil</string>
 
+    <string name="title_meus_agendamentos">Meus Agendamentos</string>
+    <string name="desc_sem_agendamentos">Sem Agendamentos</string>
+    <string name="title_cadastrar">Criar Conta</string>
+    <string name="title_choice_convenio">Escolha um Convênio</string>
+    <string name="title_perfil">Perfil</string>
+    <string name="title_alterar_senha">Alterar Senha</string>
+    <string name="perfil">Perfil</string>
+    <string name="salvar">Salvar</string>
+
+
+    <!-- Menu -->
+    <string name="edit">Editar</string>
+    <string name="edit_password">Alterar Senha</string>
+    <string name="sign_out">Sair</string>
+    <!-- /Menu -->
+
     <string name="desc_consulta_facil_lockup">Logo Consulta Fácil</string>
     <string name="desc_consulta_facil">O aplicativo para agendar consultas</string>
 
@@ -9,11 +25,7 @@
 
     <string name="sign_in">Entrar</string>
     <string name="create_account">Criar Conta</string>
-    <string name="sign_out">Sair</string>
-    <string name="signed_out">Saiu</string>
 
-    <string name="emailpassword_status_fmt">Email do Usuário: %s</string>
-    <string name="firebase_status_fmt">Usuário do Firebase: %s</string>
     <string name="authentication_failed">Autenticação Falhou!</string>
     <string name="error_field_required">Campo Obrigatório</string>
 
