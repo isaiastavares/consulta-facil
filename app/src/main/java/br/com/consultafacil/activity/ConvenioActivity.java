@@ -1,13 +1,14 @@
 package br.com.consultafacil.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
-import br.com.consultafacil.R;
-import br.com.consultafacil.util.ItemListView;
-import br.com.consultafacil.util.ListAdapterItem;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by Isaias on 13/06/2016.
@@ -23,20 +24,36 @@ public class ConvenioActivity extends BaseActivity {
 
         initButtonBack();
 
-        ArrayList<ItemListView> list = new ArrayList<ItemListView>();
-        ItemListView a = new ItemListView(R.drawable.ic_action_add, "Item a", "Descrição do Item a");
-        ItemListView b = new ItemListView(R.drawable.ic_action_add, "Item b", "Descrição do Item b");
-        ItemListView c = new ItemListView(R.drawable.ic_action_add, "Item c", "Descrição do Item c");
-        ItemListView d = new ItemListView(R.drawable.ic_action_add, "Item d", "Descrição do Item d");
-        ItemListView e = new ItemListView(R.drawable.ic_action_add, "Item e", "Descrição do Item e");
-        list.add(a);
-        list.add(b);
-        list.add(c);
-        list.add(d);
-        list.add(e);
+        initFields();
+    }
 
-        ListAdapterItem adapterItem = new ListAdapterItem(this, list);
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapterItem);
+    @Override
+    protected void initFields() {
+
+        String[] convenios = new String[] {"Allianz Saúde", "Amil", "América Saúde", "Banco do Brasil - PAS",
+                "Bradesco Saúde", "CAASP", "Caixa Seguros Saúde", "CONAB", "Itaú Saúde", "Mapfre Saúde", "Unimed",
+                "Uniodonto", ""};
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, convenios);
+        ListView listView = (ListView) findViewById(R.id.listConvenios);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object item = parent.getAdapter().getItem(position);
+
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                getConsulta().setIdUsuario(firebaseUser.getUid());
+                getConsulta().setConvenio(item.toString());
+
+                callEspecialidadesActivity();
+            }
+        });
+    }
+
+    private void callEspecialidadesActivity() {
+        Intent intent = new Intent(this, EspecialidadesActivity.class);
+        startActivity(intent);
     }
 }

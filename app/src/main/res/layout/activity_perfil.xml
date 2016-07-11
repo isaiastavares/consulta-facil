@@ -8,79 +8,8 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/perfilUsuario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_16dp">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_16dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/iconePerfil"
-                android:src="@drawable/ic_action_user"
-                android:layout_marginRight="@dimen/margin_32dp"/>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextDetailGrey"
-                    android:text="Nome"
-                    android:id="@+id/nome" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextDetailBlack"
-                    android:id="@+id/text_nome"
-                    android:enabled="false"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_16dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/iconeEmail"
-                android:src="@drawable/ic_action_user"
-                android:layout_marginRight="@dimen/margin_32dp"/>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextDetailGrey"
-                    android:text="Email"
-                    android:id="@+id/email" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextDetailBlack"
-                    android:id="@+id/text_email"
-                    android:enabled="false"/>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_height="match_parent"/>
 </LinearLayout>

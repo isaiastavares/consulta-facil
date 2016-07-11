@@ -1,12 +1,20 @@
 package br.com.consultafacil.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import br.com.consultafacil.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
+import br.com.consultafacil.adapter.UserRecyclerAdapter;
+import br.com.consultafacil.adapter.UserViewHolder;
+import br.com.consultafacil.domain.User;
+import br.com.consultafacil.domain.util.LibraryClass;
 
 /**
  * Created by Isaias on 14/06/2016.
@@ -14,8 +22,15 @@ import br.com.consultafacil.R;
 public class PerfilActivity extends BaseActivity {
 
     private TextView nome;
+    private TextView dataNascimento;
+    private TextView sexo;
+    private TextView telefone;
     private TextView email;
     private Menu menu;
+
+    private DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
+    private UserRecyclerAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,15 +41,43 @@ public class PerfilActivity extends BaseActivity {
 
         initButtonBack();
 
-        initUser();
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = LibraryClass.getFirebaseDatabase();
     }
 
-    private void initUser() {
-        nome = (TextView) findViewById(R.id.text_nome);
-        nome.setText("Isaias");
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        init();
+        initFields();
+    }
+
+    private void init() {
+        RecyclerView perfilUsuario = (RecyclerView) findViewById(R.id.perfilUsuario);
+        perfilUsuario.setHasFixedSize(true);
+        perfilUsuario.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new UserRecyclerAdapter(
+                User.class,
+                R.layout.perfil,
+                UserViewHolder.class,
+                databaseReference.child(User.USUARIOS));
+        perfilUsuario.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adapter.cleanup();
+    }
+
+    @Override
+    protected void initFields() {
+        nome = (TextView) findViewById(R.id.text_nome);
+        dataNascimento = (TextView) findViewById(R.id.text_data_nascimento);
+        sexo = (TextView) findViewById(R.id.text_sexo);
+        telefone = (TextView) findViewById(R.id.text_telefone);
         email = (TextView) findViewById(R.id.text_email);
-        email.setText("isaiasengsoft@gmail.com");
     }
 
     private void initMenu(boolean exibir) {
@@ -45,9 +88,17 @@ public class PerfilActivity extends BaseActivity {
 
     private void editPerfil(boolean editar) {
         nome.setEnabled(editar);
+        dataNascimento.setEnabled(editar);
+        sexo.setEnabled(editar);
+        telefone.setEnabled(editar);
         email.setEnabled(editar);
         initMenu(!editar);
         menu.findItem(R.id.salvar).setVisible(editar);
+    }
+
+    private void callLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -67,10 +118,13 @@ public class PerfilActivity extends BaseActivity {
                 editPerfil(true);
                 break;
             case R.id.alterar_senha:
-                Toast.makeText(this, "Alterar Senha", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, AlterarSenhaActivity.class);
+                startActivity(intent);
                 break;
             case R.id.sair:
-                signOut();
+                mAuth.signOut();
+                callLoginActivity();
+                finish();
                 break;
             case R.id.salvar:
                 editPerfil(false);

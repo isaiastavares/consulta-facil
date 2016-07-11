@@ -6,7 +6,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,11 +16,11 @@ import br.com.consultafacil.domain.util.LibraryClass;
  */
 public class User {
 
-    public static String PROVIDER = "br.com.consultafacil.domain.User.PROVIDER";
+    public static final String USUARIOS = "usuarios";
 
     private String id;
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String sexo;
     private String telefone;
     private String email;
@@ -50,7 +49,7 @@ public class User {
 
     private void setNameInMap(Map<String, Object> map) {
         if (getNome() != null) {
-            map.put("name", getNome());
+            map.put("nome", getNome());
         }
     }
 
@@ -60,11 +59,11 @@ public class User {
         }
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -122,16 +121,8 @@ public class User {
         this.newPassword = newPassword;
     }
 
-    public void saveProviderSP(Context context, String token) {
-        LibraryClass.saveSP(context, PROVIDER, token);
-    }
-
-    public String getProviderSP(Context context) {
-        return (LibraryClass.getSP(context, PROVIDER));
-    }
-
     public void saveDB(DatabaseReference.CompletionListener... completionListener) {
-        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child("users").child(getId());
+        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child(USUARIOS).child(getId());
 
         if (completionListener.length == 0) {
             firebase.setValue(this);
@@ -141,7 +132,7 @@ public class User {
     }
 
     public void updateDB(DatabaseReference.CompletionListener... completionListener) {
-        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child("users").child(getId());
+        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child(USUARIOS).child(getId());
 
         Map<String, Object> map = new HashMap<>();
         setNameInMap(map);
@@ -159,12 +150,12 @@ public class User {
     }
 
     public void removeDB(DatabaseReference.CompletionListener completionListener) {
-        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child("users").child(getId());
+        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child(USUARIOS).child(getId());
         firebase.setValue(null, completionListener);
     }
 
     public void contextDataDB(Context context) {
-        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child("users").child(getId());
+        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child(USUARIOS).child(getId());
         firebase.addListenerForSingleValueEvent((ValueEventListener) context);
     }
 }

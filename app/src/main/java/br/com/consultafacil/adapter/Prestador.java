@@ -1,18 +1,18 @@
-package br.com.consultafacil.util;
+package br.com.consultafacil.adapter;
 
 /**
- * Created by Isaias on 11/06/2016.
+ * Created by Isaias on 11/07/2016.
  */
-public class ItemListView {
+public class Prestador {
 
     private int imagem;
     private String nome;
-    private String descricao;
+    private String endereco;
 
-    public ItemListView(int imagem, String nome, String descricao) {
+    public Prestador(int imagem, String nome, String endereco) {
         this.imagem = imagem;
         this.nome = nome;
-        this.descricao = descricao;
+        this.endereco = endereco;
     }
 
     public int getImagem() {
@@ -31,11 +31,11 @@ public class ItemListView {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }

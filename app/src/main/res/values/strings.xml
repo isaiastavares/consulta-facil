@@ -5,6 +5,8 @@
     <string name="desc_sem_agendamentos">Sem Agendamentos</string>
     <string name="title_cadastrar">Criar Conta</string>
     <string name="title_choice_convenio">Escolha um Convênio</string>
+    <string name="title_choice_especialidade">Escolha uma Especialidade</string>
+    <string name="title_choice_prestador">Escolha um Prestador</string>
     <string name="title_perfil">Perfil</string>
     <string name="title_alterar_senha">Alterar Senha</string>
     <string name="perfil">Perfil</string>
@@ -28,6 +30,8 @@
 
     <string name="authentication_failed">Autenticação Falhou!</string>
     <string name="error_field_required">Campo Obrigatório</string>
+    <string name="field_sexo_required">Informe o Sexo</string>
+    <string name="field_password_invalid">A senha deve conter pelo menos 6 caracteres</string>
 
     <string name="loading">Carregando…</string>
 </resources>

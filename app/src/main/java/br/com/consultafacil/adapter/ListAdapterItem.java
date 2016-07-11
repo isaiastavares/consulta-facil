@@ -1,4 +1,4 @@
-package br.com.consultafacil.util;
+package br.com.consultafacil.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import br.com.consultafacil.R;
+import br.com.consultafacil.activity.R;
 
 /**
  * Created by Isaias on 11/06/2016.

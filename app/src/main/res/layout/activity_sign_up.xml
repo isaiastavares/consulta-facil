@@ -95,9 +95,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:hint="Celular"
+                android:hint="Telefone"
                 android:ems="10"
-                android:id="@+id/celular"
+                android:id="@+id/telefone"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -153,6 +153,7 @@
             android:layout_height="wrap_content"
             android:text="Cadastrar"
             android:id="@+id/button_cadastrar"
+            android:onClick="createAccount"
             android:theme="@style/ButtonBlueDark"
             android:layout_gravity="center_horizontal" />
 

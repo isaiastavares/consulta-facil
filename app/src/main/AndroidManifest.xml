@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.consultafacil">
+    package="br.com.consultafacil.activity">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".auth.LoginActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,49 +18,60 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".auth.SignUpActivity"
+            android:name=".SignUpActivity"
             android:label="@string/title_cadastrar"
-            android:parentActivityName=".auth.LoginActivity">
-
+            android:parentActivityName=".LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".auth.LoginActivity" />
+                android:value=".LoginActivity" />
         </activity>
         <activity
-            android:name=".activity.MeusAgendamentosActivity"
-            android:label="@string/title_meus_agendamentos"/>
+            android:name=".MeusAgendamentosActivity"
+            android:label="@string/title_meus_agendamentos" />
         <activity
-            android:name=".activity.ConvenioActivity"
-            android:label="@string/title_choice_convenio"
-            android:parentActivityName=".activity.MeusAgendamentosActivity">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MeusAgendamentosActivity" />
-        </activity>
-        <activity
-            android:name=".activity.PerfilActivity"
+            android:name=".PerfilActivity"
             android:label="@string/title_perfil"
-            android:parentActivityName=".activity.MeusAgendamentosActivity">
-
+            android:parentActivityName=".MeusAgendamentosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MeusAgendamentosActivity" />
+                android:value=".MeusAgendamentosActivity" />
         </activity>
         <activity
-            android:name=".activity.AlterarSenhaActivity"
+            android:name=".AlterarSenhaActivity"
             android:label="@string/title_alterar_senha"
-            android:parentActivityName=".activity.PerfilActivity">
-
+            android:parentActivityName=".PerfilActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.PerfilActivity" />
+                android:value=".PerfilActivity" />
+        </activity>
+        <activity
+            android:name=".ConvenioActivity"
+            android:label="@string/title_choice_convenio"
+            android:parentActivityName=".MeusAgendamentosActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MeusAgendamentosActivity" />
+        </activity>
+        <activity
+            android:name=".EspecialidadesActivity"
+            android:label="@string/title_choice_especialidade"
+            android:parentActivityName=".ConvenioActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ConvenioActivity" />
+        </activity>
+        <activity
+            android:name=".PrestadorActivity"
+            android:label="@string/title_choice_prestador"
+            android:parentActivityName=".EspecialidadesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EspecialidadesActivity" />
         </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
     </application>
 
 </manifest>

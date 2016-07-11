@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -9,7 +10,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/nenhum_agendamento"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,39 +26,55 @@
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
             android:text="Você não tem nenhum agendamento"
-            android:textSize="@dimen/title_sem_agendamentos"/>
+            android:textSize="@dimen/title_sem_agendamentos"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="151dp" />
 
         <ImageView
             android:id="@+id/imagem_agendamento"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.29"
-            android:layout_gravity="center_horizontal"
             android:contentDescription="@string/desc_sem_agendamentos"
-            android:src="@mipmap/ic_calendar_time" />
+            android:src="@mipmap/ic_calendar_time"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/sem_agendamento"
+            android:layout_centerHorizontal="true" />
 
-    </LinearLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabNovoAgendamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_add"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="32dp"
+            android:onClick="callConvenioActivity"
+            app:elevation="@dimen/fab_elevation"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/layoutAgendamentos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
 
         <ListView
+            android:id="@+id/listAgendamentos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listAgendamentos" />
+            android:layout_height="wrap_content" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginRight="32dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_action_add"
-            android:onClick="escolherConvenio"
+            android:onClick="callConvenioActivity"
             app:elevation="@dimen/fab_elevation"/>
 
     </RelativeLayout>
