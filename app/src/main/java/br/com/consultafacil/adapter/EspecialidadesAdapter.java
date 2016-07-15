@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import br.com.consultafacil.activity.R;
 import br.com.consultafacil.fragment.DatePickerFragment;
 
-/**
- * Created by Isaias on 10/07/2016.
- */
 public class EspecialidadesAdapter extends ArrayAdapter<Especialidades> {
 
     private Context context;

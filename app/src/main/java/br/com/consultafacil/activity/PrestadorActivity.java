@@ -12,9 +12,6 @@ import br.com.consultafacil.adapter.Prestador;
 import br.com.consultafacil.adapter.PrestadorAdapter;
 import br.com.consultafacil.enums.PRESTADOR;
 
-/**
- * Created by Isaias on 11/07/2016.
- */
 public class PrestadorActivity extends BaseActivity {
 
     @Override

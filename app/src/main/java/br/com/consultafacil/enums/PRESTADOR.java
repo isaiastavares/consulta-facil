@@ -2,9 +2,6 @@ package br.com.consultafacil.enums;
 
 import br.com.consultafacil.activity.R;
 
-/**
- * Created by Isaias on 11/07/2016.
- */
 public enum PRESTADOR {
 
     PRESTADOR_1(R.mipmap.avatar1, "Prestador 1", "Rua 1, Bairro 1, Cidade 1 - XX"),

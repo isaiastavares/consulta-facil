@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-/**
- * Created by Isaias on 14/06/2016.
- */
 public class PerfilActivity extends BaseActivity {
 
     private TextView nome;

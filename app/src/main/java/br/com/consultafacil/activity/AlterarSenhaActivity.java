@@ -21,9 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import br.com.consultafacil.domain.User;
 
-/**
- * Created by Isaias on 17/06/2016.
- */
 public class AlterarSenhaActivity extends BaseActivity implements ValueEventListener {
 
     private User user;

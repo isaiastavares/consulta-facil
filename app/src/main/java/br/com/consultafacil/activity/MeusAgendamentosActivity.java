@@ -22,9 +22,6 @@ import br.com.consultafacil.domain.User;
 import br.com.consultafacil.domain.util.LibraryClass;
 import br.com.consultafacil.enums.PRESTADOR;
 
-/**
- * Created by Isaias on 11/06/2016.
- */
 public class MeusAgendamentosActivity extends BaseActivity {
 
     private ListAdapterItem adapterItem;
@@ -52,7 +49,10 @@ public class MeusAgendamentosActivity extends BaseActivity {
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
                     Consulta consulta = d.getValue(Consulta.class);
                     PRESTADOR prestador = PRESTADOR.fromNome(consulta.getPrestador());
-                    list.add(new ItemListView(prestador.getImagem(), prestador.getNome(), prestador.getEndereco()));
+                    String descricao = prestador.getEndereco() + " - " + consulta.getData() + " às " + consulta.getHorario();
+                    list.add(new ItemListView(prestador.getImagem(),
+                            prestador.getNome(),
+                            descricao));
                 }
                 initFields();
             }

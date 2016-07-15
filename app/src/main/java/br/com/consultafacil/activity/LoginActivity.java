@@ -19,9 +19,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import br.com.consultafacil.domain.User;
 
-/**
- * Created by Isaias on 06/06/2016.
- */
 public class LoginActivity extends BaseActivity implements View.OnClickListener, ValueEventListener {
 
     private EditText mEmailField;

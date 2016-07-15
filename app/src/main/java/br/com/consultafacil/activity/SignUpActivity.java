@@ -27,9 +27,6 @@ import br.com.consultafacil.domain.User;
 import br.com.consultafacil.fragment.DatePickerFragment;
 import br.com.consultafacil.util.Utilidade;
 
-/**
- * Created by Isaias on 17/06/2016.
- */
 public class SignUpActivity extends BaseActivity implements DatabaseReference.CompletionListener {
 
     private EditText mNomeField;

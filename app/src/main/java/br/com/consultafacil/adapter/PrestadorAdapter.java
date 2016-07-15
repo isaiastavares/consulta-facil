@@ -12,9 +12,6 @@ import java.util.ArrayList;
 
 import br.com.consultafacil.activity.R;
 
-/**
- * Created by Isaias on 11/07/2016.
- */
 public class PrestadorAdapter extends ArrayAdapter<Prestador> {
 
     private Context context;

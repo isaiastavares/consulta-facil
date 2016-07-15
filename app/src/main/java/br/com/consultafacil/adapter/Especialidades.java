@@ -1,8 +1,5 @@
 package br.com.consultafacil.adapter;
 
-/**
- * Created by Isaias on 10/07/2016.
- */
 public class Especialidades {
 
     private int imagem;

@@ -1,8 +1,5 @@
 package br.com.consultafacil.adapter;
 
-/**
- * Created by Isaias on 11/07/2016.
- */
 public class Prestador {
 
     private int imagem;

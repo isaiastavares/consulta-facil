@@ -13,9 +13,6 @@ import java.util.Date;
 
 import br.com.consultafacil.util.Utilidade;
 
-/**
- * Created by Isaias on 13/06/2016.
- */
 public class ConvenioActivity extends BaseActivity {
 
     @Override

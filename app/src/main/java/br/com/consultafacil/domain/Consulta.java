@@ -9,9 +9,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import br.com.consultafacil.domain.util.LibraryClass;
 
-/**
- * Created by Isaias on 10/07/2016.
- */
 public class Consulta {
 
     public static final String CONSULTAS = "consultas";

@@ -13,9 +13,6 @@ import java.util.List;
 
 import br.com.consultafacil.activity.R;
 
-/**
- * Created by Isaias on 11/06/2016.
- */
 public class ListAdapterItem extends ArrayAdapter<ItemListView> {
 
     private Context context;

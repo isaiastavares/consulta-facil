@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import br.com.consultafacil.enums.PRESTADOR;
 
-/**
- * Created by Isaias on 11/07/2016.
- */
 public class HorariosDisponiveisActivity extends BaseActivity {
 
     private ImageView imagemPrestador;

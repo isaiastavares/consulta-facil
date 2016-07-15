@@ -5,9 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by Isaias on 11/07/2016.
- */
 public final class Utilidade {
 
     private Utilidade() {

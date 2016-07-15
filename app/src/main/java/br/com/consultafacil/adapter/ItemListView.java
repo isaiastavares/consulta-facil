@@ -1,8 +1,5 @@
 package br.com.consultafacil.adapter;
 
-/**
- * Created by Isaias on 11/06/2016.
- */
 public class ItemListView {
 
     private int imagem;
