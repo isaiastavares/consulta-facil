@@ -9,23 +9,22 @@
         android:id="@+id/imagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
-        android:layout_marginTop="6dp" />
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
 
     <TextView
         android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
         android:layout_toRightOf="@+id/imagem" />
 
     <TextView
         android:id="@+id/endereco"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/nome"
         android:layout_toRightOf="@+id/imagem"
-        android:paddingLeft="2dp"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
 </RelativeLayout>

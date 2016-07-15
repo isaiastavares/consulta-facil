@@ -7,11 +7,20 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import br.com.consultafacil.domain.Consulta;
+import br.com.consultafacil.domain.User;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
     private static Consulta consulta;
+    private static User user;
+
+    protected User getUser() {
+        if (user == null) {
+            user = new User();
+        }
+        return user;
+    }
 
     protected Consulta getConsulta() {
         if (consulta == null) {
@@ -26,7 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             mProgressDialog.setMessage(getString(R.string.loading));
             mProgressDialog.setIndeterminate(true);
         }
-
         mProgressDialog.show();
     }
 

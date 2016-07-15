@@ -12,22 +12,23 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import br.com.consultafacil.domain.User;
 
 /**
  * Created by Isaias on 06/06/2016.
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, ValueEventListener {
 
     private EditText mEmailField;
     private EditText mPasswordField;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private User user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mAuthListener = getFirebaseAuthResultHandler();
 
         initFields();
-        initUser();
     }
 
     @Override
@@ -65,9 +65,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     protected void initUser() {
-        user = new User();
-        user.setEmail(mEmailField.getText().toString());
-        user.setPassword(mPasswordField.getText().toString());
+        String idUsuario = mAuth.getCurrentUser().getUid();
+        if (idUsuario != null) {
+            getUser().setId(idUsuario);
+            getUser().contextDataDB(this);
+        }
     }
 
     private boolean validateForm() {
@@ -98,13 +100,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
 
         showProgressDialog();
-        initUser();
         verifyLogin();
-        hideProgressDialog();
     }
 
     private void verifyLogged() {
         if (mAuth.getCurrentUser() != null) {
+            showProgressDialog();
+            initUser();
+            hideProgressDialog();
             callMeusAgendamentosActivity();
         } else {
             mAuth.addAuthStateListener(mAuthListener);
@@ -112,11 +115,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void verifyLogin(){
-        mAuth.signInWithEmailAndPassword(user.getEmail(), user.getPassword())
+        mAuth.signInWithEmailAndPassword(mEmailField.getText().toString(), mPasswordField.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
+                            hideProgressDialog();
                             showToast(getString(R.string.authentication_failed));
                             return;
                         }
@@ -124,6 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                hideProgressDialog();
                 FirebaseCrash.report(e);
             }
         });
@@ -133,39 +138,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         FirebaseAuth.AuthStateListener callback = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-                FirebaseUser userFirebase = firebaseAuth.getCurrentUser();
-
-                if (userFirebase == null) {
+                if (firebaseAuth.getCurrentUser() == null) {
                     return;
                 }
 
-                if (user.getId() == null && isNomeOk(user, userFirebase)) {
-                    user.setId(userFirebase.getUid());
-                    user.setNameIfNull(userFirebase.getDisplayName());
-                    user.setEmailIfNull(userFirebase.getEmail());
-                    user.saveDB();
-                }
-
+                initUser();
+                hideProgressDialog();
                 callMeusAgendamentosActivity();
             }
         };
         return callback;
-    }
-
-    private boolean isNomeOk(User user, FirebaseUser firebaseUser) {
-        return user.getNome() != null || firebaseUser.getDisplayName() != null;
-    }
-
-    private void callMeusAgendamentosActivity() {
-        Intent intent = new Intent(this, MeusAgendamentosActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void callSignUpActivity() {
-        Intent intent = new Intent( this, SignUpActivity.class );
-        startActivity(intent);
     }
 
     @Override
@@ -178,5 +160,30 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 signIn();
                 break;
         }
+    }
+
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        User u = dataSnapshot.getValue(User.class);
+
+        getUser().setNome(u.getNome());
+        getUser().setDataNascimento(u.getDataNascimento());
+        getUser().setSexo(u.getSexo());
+        getUser().setTelefone(u.getTelefone());
+        getUser().setEmail(u.getEmail());
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {}
+
+    private void callMeusAgendamentosActivity() {
+        Intent intent = new Intent(this, MeusAgendamentosActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void callSignUpActivity() {
+        Intent intent = new Intent( this, SignUpActivity.class );
+        startActivity(intent);
     }
 }

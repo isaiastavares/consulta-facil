@@ -9,9 +9,7 @@
         android:id="@+id/imagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
-        android:layout_marginTop="6dp"
-        android:src="@drawable/ic_action_lock_closed" />
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
 
     <TextView
         android:id="@+id/nome"
@@ -19,7 +17,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceListItem"
         android:gravity="center_vertical"
-        android:text="Teste"
         android:layout_toRightOf="@+id/imagem"
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
         android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 </RelativeLayout>

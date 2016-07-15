@@ -68,6 +68,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".EspecialidadesActivity" />
         </activity>
+        <activity
+            android:name=".HorariosDisponiveisActivity"
+            android:label="@string/title_choice_horario"
+            android:parentActivityName=".PrestadorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PrestadorActivity" />
+        </activity>
+        <activity
+            android:name=".ConfirmarAgendamentoActivity"
+            android:label="@string/title_confirmar_dados"
+            android:parentActivityName=".HorariosDisponiveisActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HorariosDisponiveisActivity" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

@@ -8,7 +8,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Date;
+
+import br.com.consultafacil.util.Utilidade;
 
 /**
  * Created by Isaias on 13/06/2016.
@@ -43,8 +46,9 @@ public class ConvenioActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object item = parent.getAdapter().getItem(position);
 
-                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                getConsulta().setIdUsuario(firebaseUser.getUid());
+                String data = String.valueOf(new Date().getTime());
+                getConsulta().setId(Utilidade.gerarHashMD5(data));
+                getConsulta().setIdUsuario(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 getConsulta().setConvenio(item.toString());
 
                 callEspecialidadesActivity();

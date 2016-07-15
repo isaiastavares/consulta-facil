@@ -50,6 +50,8 @@ public class SignUpActivity extends BaseActivity implements DatabaseReference.Co
 
         initToolbar();
 
+        initButtonBack();
+
         mAuth = FirebaseAuth.getInstance();
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {

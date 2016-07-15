@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.consultafacil.activity.R;
 
@@ -32,7 +33,7 @@ public class ListAdapterItem extends ArrayAdapter<ItemListView> {
 
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item, null);
 
-        ImageView imagemLista = (ImageView) convertView.findViewById(R.id.imagem_lista);
+        ImageView imagemLista = (ImageView) convertView.findViewById(R.id.imagem);
         imagemLista.setImageResource(itemPosicao.getImagem());
 
         TextView nome = (TextView) convertView.findViewById(R.id.nome);

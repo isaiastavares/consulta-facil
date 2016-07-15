@@ -1,5 +1,6 @@
 package br.com.consultafacil.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 import br.com.consultafacil.adapter.Prestador;
 import br.com.consultafacil.adapter.PrestadorAdapter;
+import br.com.consultafacil.enums.PRESTADOR;
 
 /**
  * Created by Isaias on 11/07/2016.
@@ -30,11 +32,9 @@ public class PrestadorActivity extends BaseActivity {
     @Override
     protected void initFields() {
         ArrayList<Prestador> list = new ArrayList<>();
-        list.add(new Prestador(R.drawable.ic_action_add, "Prestador 1", "Rua 1"));
-        list.add(new Prestador(R.drawable.ic_action_add, "Prestador 2", "Rua 2"));
-        list.add(new Prestador(R.drawable.ic_action_add, "Prestador 3", "Rua 3"));
-        list.add(new Prestador(R.drawable.ic_action_add, "Prestador 4", "Rua 4"));
-        list.add(new Prestador(R.drawable.ic_action_add, "Prestador 5", "Rua 5"));
+        for (PRESTADOR prestador : PRESTADOR.values()) {
+            list.add(new Prestador(prestador.getImagem(), prestador.getNome(), prestador.getEndereco()));
+        }
 
         PrestadorAdapter adapterItem = new PrestadorAdapter(this, list);
         ListView listView = (ListView) findViewById(R.id.listPrestador);
@@ -48,8 +48,13 @@ public class PrestadorActivity extends BaseActivity {
                 getConsulta().setPrestador(item.getNome());
                 getConsulta().setEndereco(item.getEndereco());
 
-                showToast(getConsulta().getPrestador() + " " + getConsulta().getEndereco());
+                callHorariosDisponiveisActivity();
             }
         });
+    }
+
+    private void callHorariosDisponiveisActivity() {
+        Intent intent = new Intent(this, HorariosDisponiveisActivity.class);
+        startActivity(intent);
     }
 }

@@ -32,22 +32,12 @@ public class EspecialidadesActivity extends BaseActivity {
     @Override
     protected void initFields() {
         ArrayList<Especialidades> list = new ArrayList<>();
-        list.add(new Especialidades(R.drawable.ic_action_add, "Ginecologista"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Dermatologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Oftalmologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Clínica Geral"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Cardiologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Ortopedia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Psiquiatria"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Urologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Endocrinologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Otorrinolaringologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Gastroenterologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Neurologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Odontologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Cirurgia Vascular"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Reumatologia"));
-        list.add(new Especialidades(R.drawable.ic_action_add, "Pediatria"));
+        list.add(new Especialidades(R.mipmap.clinico_geral, "Clínico Geral"));
+        list.add(new Especialidades(R.mipmap.dentista, "Dentista"));
+        list.add(new Especialidades(R.mipmap.hematologista, "Hematologista"));
+        list.add(new Especialidades(R.mipmap.neurologista, "Neurologista"));
+        list.add(new Especialidades(R.mipmap.pediatra, "Pediatra"));
+        list.add(new Especialidades(R.mipmap.pneumologista, "Pneumologista"));
 
         EspecialidadesAdapter adapterItem = new EspecialidadesAdapter(this, list);
         ListView listView = (ListView) findViewById(R.id.listEspecialidades);

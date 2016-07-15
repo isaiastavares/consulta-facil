@@ -2,27 +2,35 @@ package br.com.consultafacil.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 import br.com.consultafacil.adapter.ItemListView;
 import br.com.consultafacil.adapter.ListAdapterItem;
+import br.com.consultafacil.domain.Consulta;
+import br.com.consultafacil.domain.User;
+import br.com.consultafacil.domain.util.LibraryClass;
+import br.com.consultafacil.enums.PRESTADOR;
 
 /**
  * Created by Isaias on 11/06/2016.
  */
 public class MeusAgendamentosActivity extends BaseActivity {
 
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     private ListAdapterItem adapterItem;
+    private ArrayList<ItemListView> list;
+    private DatabaseReference databaseReference;
+    private ValueEventListener valueEventListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,76 +39,53 @@ public class MeusAgendamentosActivity extends BaseActivity {
 
         initToolbar();
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
+        String idUsuario = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        databaseReference = LibraryClass.getFirebaseDatabase()
+                .child(User.USUARIOS)
+                .child(idUsuario)
+                .child(Consulta.CONSULTAS);
+
+        valueEventListener = new ValueEventListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-                if (firebaseAuth.getCurrentUser() == null) {
-                    Intent intent = new Intent(MeusAgendamentosActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                list = new ArrayList<>();
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    Consulta consulta = d.getValue(Consulta.class);
+                    PRESTADOR prestador = PRESTADOR.fromNome(consulta.getPrestador());
+                    list.add(new ItemListView(prestador.getImagem(), prestador.getNome(), prestador.getEndereco()));
                 }
+                initFields();
             }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
         };
+        databaseReference.addValueEventListener(valueEventListener);
 
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.addAuthStateListener(authStateListener);
-
-        mAuth = FirebaseAuth.getInstance();
+        initFields();
     }
 
     @Override
     protected void initFields() {
-        ArrayList<ItemListView> list = new ArrayList<ItemListView>();
-        ItemListView a = new ItemListView(R.drawable.ic_action_add, "Item a", "Descrição do Item a");
-        ItemListView b = new ItemListView(R.drawable.ic_action_add, "Item b", "Descrição do Item b");
-        ItemListView c = new ItemListView(R.drawable.ic_action_add, "Item c", "Descrição do Item c");
-        ItemListView d = new ItemListView(R.drawable.ic_action_add, "Item d", "Descrição do Item d");
-        ItemListView e = new ItemListView(R.drawable.ic_action_add, "Item e", "Descrição do Item e");
-        list.add(a);
-        list.add(b);
-        list.add(c);
-        list.add(d);
-        list.add(e);
-
-        if (!list.isEmpty()) {
-            findViewById(R.id.layoutAgendamentos).setVisibility(View.VISIBLE);
-            findViewById(R.id.nenhum_agendamento).setVisibility(View.GONE);
-        } else {
+        if (list == null || list.isEmpty()) {
             findViewById(R.id.layoutAgendamentos).setVisibility(View.GONE);
             findViewById(R.id.nenhum_agendamento).setVisibility(View.VISIBLE);
+        } else {
+            adapterItem = new ListAdapterItem(this, list);
+            ListView listView = (ListView) findViewById(R.id.listAgendamentos);
+            listView.setAdapter(adapterItem);
+            findViewById(R.id.layoutAgendamentos).setVisibility(View.VISIBLE);
+            findViewById(R.id.nenhum_agendamento).setVisibility(View.GONE);
         }
-
-        adapterItem = new ListAdapterItem(this, list);
-        ListView listView = (ListView) findViewById(R.id.listAgendamentos);
-        listView.setAdapter(adapterItem);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        databaseReference.removeEventListener(valueEventListener);
         if (adapterItem != null) {
             adapterItem.clear();
         }
-
-        if (authStateListener != null) {
-            mAuth.removeAuthStateListener(authStateListener);
-        }
-    }
-
-    public void callConvenioActivity(View v) {
-        Intent intent = new Intent(this, ConvenioActivity.class);
-        startActivity(intent);
-    }
-
-    private void callPerfilActivity() {
-        Intent intent = new Intent(this, PerfilActivity.class);
-        startActivity(intent);
-    }
-
-    private void callLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -120,11 +105,26 @@ public class MeusAgendamentosActivity extends BaseActivity {
                 callPerfilActivity();
                 break;
             case R.id.sair:
-                mAuth.signOut();
+                FirebaseAuth.getInstance().signOut();
                 callLoginActivity();
                 finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void callConvenioActivity(View v) {
+        Intent intent = new Intent(this, ConvenioActivity.class);
+        startActivity(intent);
+    }
+
+    private void callPerfilActivity() {
+        Intent intent = new Intent(this, PerfilActivity.class);
+        startActivity(intent);
+    }
+
+    private void callLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

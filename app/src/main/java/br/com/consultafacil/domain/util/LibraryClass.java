@@ -3,6 +3,9 @@ package br.com.consultafacil.domain.util;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by Isaias on 16/06/2016.
  */

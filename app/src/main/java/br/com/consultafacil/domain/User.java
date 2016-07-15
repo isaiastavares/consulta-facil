@@ -6,9 +6,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import br.com.consultafacil.domain.util.LibraryClass;
 
 /**
@@ -31,6 +28,7 @@ public class User {
         super();
     }
 
+    @Exclude
     public String getId() {
         return id;
     }
@@ -45,18 +43,6 @@ public class User {
 
     public void setNome(String name) {
         this.nome = name;
-    }
-
-    private void setNameInMap(Map<String, Object> map) {
-        if (getNome() != null) {
-            map.put("nome", getNome());
-        }
-    }
-
-    public void setNameIfNull(String name) {
-        if (this.nome == null) {
-            this.nome = name;
-        }
     }
 
     public String getDataNascimento() {
@@ -91,18 +77,6 @@ public class User {
         this.email = email;
     }
 
-    private void setEmailInMap(Map<String, Object> map) {
-        if (getEmail() != null) {
-            map.put("email", getEmail());
-        }
-    }
-
-    public void setEmailIfNull(String email) {
-        if (this.email == null) {
-            this.email = email;
-        }
-    }
-
     @Exclude
     public String getPassword() {
         return password;
@@ -129,29 +103,6 @@ public class User {
         } else {
             firebase.setValue(this, completionListener[0]);
         }
-    }
-
-    public void updateDB(DatabaseReference.CompletionListener... completionListener) {
-        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child(USUARIOS).child(getId());
-
-        Map<String, Object> map = new HashMap<>();
-        setNameInMap(map);
-        setEmailInMap(map);
-
-        if (map.isEmpty()) {
-            return;
-        }
-
-        if (completionListener.length > 0) {
-            firebase.updateChildren(map, completionListener[0]);
-        } else {
-            firebase.updateChildren(map);
-        }
-    }
-
-    public void removeDB(DatabaseReference.CompletionListener completionListener) {
-        DatabaseReference firebase = LibraryClass.getFirebaseDatabase().child(USUARIOS).child(getId());
-        firebase.setValue(null, completionListener);
     }
 
     public void contextDataDB(Context context) {

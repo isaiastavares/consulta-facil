@@ -2,19 +2,12 @@ package br.com.consultafacil.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-
-import br.com.consultafacil.adapter.UserRecyclerAdapter;
-import br.com.consultafacil.adapter.UserViewHolder;
-import br.com.consultafacil.domain.User;
-import br.com.consultafacil.domain.util.LibraryClass;
 
 /**
  * Created by Isaias on 14/06/2016.
@@ -28,13 +21,12 @@ public class PerfilActivity extends BaseActivity {
     private TextView email;
     private Menu menu;
 
-    private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
-    private UserRecyclerAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        showProgressDialog();
         setContentView(R.layout.activity_perfil);
 
         initToolbar();
@@ -42,33 +34,14 @@ public class PerfilActivity extends BaseActivity {
         initButtonBack();
 
         mAuth = FirebaseAuth.getInstance();
-        databaseReference = LibraryClass.getFirebaseDatabase();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        init();
         initFields();
-    }
-
-    private void init() {
-        RecyclerView perfilUsuario = (RecyclerView) findViewById(R.id.perfilUsuario);
-        perfilUsuario.setHasFixedSize(true);
-        perfilUsuario.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new UserRecyclerAdapter(
-                User.class,
-                R.layout.perfil,
-                UserViewHolder.class,
-                databaseReference.child(User.USUARIOS));
-        perfilUsuario.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        adapter.cleanup();
+        init();
     }
 
     @Override
@@ -80,25 +53,13 @@ public class PerfilActivity extends BaseActivity {
         email = (TextView) findViewById(R.id.text_email);
     }
 
-    private void initMenu(boolean exibir) {
-        menu.findItem(R.id.editar).setVisible(exibir);
-        menu.findItem(R.id.alterar_senha).setVisible(exibir);
-        menu.findItem(R.id.sair).setVisible(exibir);
-    }
-
-    private void editPerfil(boolean editar) {
-        nome.setEnabled(editar);
-        dataNascimento.setEnabled(editar);
-        sexo.setEnabled(editar);
-        telefone.setEnabled(editar);
-        email.setEnabled(editar);
-        initMenu(!editar);
-        menu.findItem(R.id.salvar).setVisible(editar);
-    }
-
-    private void callLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+    private void init() {
+        nome.setText(getUser().getNome());
+        dataNascimento.setText(getUser().getDataNascimento());
+        sexo.setText(getUser().getSexo());
+        telefone.setText(getUser().getTelefone());
+        email.setText(getUser().getEmail());
+        hideProgressDialog();
     }
 
     @Override
@@ -128,8 +89,84 @@ public class PerfilActivity extends BaseActivity {
                 break;
             case R.id.salvar:
                 editPerfil(false);
+                saveUser();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initMenu(boolean exibir) {
+        menu.findItem(R.id.editar).setVisible(exibir);
+        menu.findItem(R.id.alterar_senha).setVisible(exibir);
+        menu.findItem(R.id.sair).setVisible(exibir);
+    }
+
+    private void editPerfil(boolean editar) {
+        nome.setEnabled(editar);
+        dataNascimento.setEnabled(editar);
+        sexo.setEnabled(editar);
+        telefone.setEnabled(editar);
+        email.setEnabled(editar);
+        initMenu(!editar);
+        menu.findItem(R.id.salvar).setVisible(editar);
+    }
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(nome.getText().toString())) {
+            nome.setError(getString(R.string.error_field_required));
+            valid = false;
+        } else {
+            nome.setError(null);
+        }
+
+        if (TextUtils.isEmpty(dataNascimento.getText().toString())) {
+            dataNascimento.setError(getString(R.string.error_field_required));
+            valid = false;
+        } else {
+            dataNascimento.setError(null);
+        }
+
+        if (TextUtils.isEmpty(sexo.getText().toString())) {
+            sexo.setError(getString(R.string.error_field_required));
+            valid = false;
+        } else {
+            sexo.setError(null);
+        }
+
+        if (TextUtils.isEmpty(telefone.getText().toString())) {
+            telefone.setError(getString(R.string.error_field_required));
+            valid = false;
+        } else {
+            telefone.setError(null);
+        }
+
+        if (TextUtils.isEmpty(email.getText().toString())) {
+            email.setError(getString(R.string.error_field_required));
+            valid = false;
+        } else {
+            email.setError(null);
+        }
+
+        return valid;
+    }
+
+    private void saveUser() {
+        if (!validateForm()) {
+            return;
+        }
+
+        getUser().setNome(nome.getText().toString());
+        getUser().setDataNascimento(dataNascimento.getText().toString());
+        getUser().setSexo(sexo.getText().toString());
+        getUser().setTelefone(telefone.getText().toString());
+        getUser().setEmail(email.getText().toString());
+        getUser().saveDB();
+    }
+
+    private void callLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }

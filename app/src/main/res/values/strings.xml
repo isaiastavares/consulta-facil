@@ -7,6 +7,8 @@
     <string name="title_choice_convenio">Escolha um Convênio</string>
     <string name="title_choice_especialidade">Escolha uma Especialidade</string>
     <string name="title_choice_prestador">Escolha um Prestador</string>
+    <string name="title_choice_horario">Escolha um Horário Disponível</string>
+    <string name="title_confirmar_dados">Confirmação de Dados</string>
     <string name="title_perfil">Perfil</string>
     <string name="title_alterar_senha">Alterar Senha</string>
     <string name="perfil">Perfil</string>

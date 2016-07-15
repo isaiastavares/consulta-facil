@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="?android:attr/listPreferredItemPaddingStart">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/listPreferredItemPaddingStart"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_event" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextDetailGrey"
+                    android:text="Data"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
+
+                <TextView
+                    android:id="@+id/data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_place" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextDetailGrey"
+                    android:text="Localização"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
+
+                <TextView
+                    android:id="@+id/endereco_prestador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imagem_prestador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/avatar1" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextDetailGrey"
+                    android:text="Prestador"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
+
+                <TextView
+                    android:id="@+id/nome_prestador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_toc" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextDetailGrey"
+                    android:text="Especialidade"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
+
+                <TextView
+                    android:id="@+id/especialidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_person_pin" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextDetailGrey"
+                    android:text="Paciente"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
+
+                <TextView
+                    android:id="@+id/nome_paciente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_local_phone" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextDetailGrey"
+                    android:text="Telefone"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart" />
+
+                <TextView
+                    android:id="@+id/telefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceListItem"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
+                    android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+
+        <Button
+            android:id="@+id/confirmar_agendamento"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Confirmar Agendamento"
+            android:theme="@style/ButtonBlueDark"
+            android:onClick="confirmarAgendamento" />
+    </LinearLayout>
+
+</LinearLayout>
